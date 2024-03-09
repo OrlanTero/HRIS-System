@@ -1,0 +1,2 @@
+--update $FileName$:$FileParentDir$/css/$FileNameWithoutExtension$.css --style expanded
+$FileParentDir$/css/$FileNameWithoutExtension$.css:$FileParentDir$/css/$FileNameWithoutExtension$.css.map

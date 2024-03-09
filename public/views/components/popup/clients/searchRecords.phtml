@@ -1,0 +1,12 @@
+<?php
+
+global $APPLICATION, $CLIENT_TABLE_BODY_KEY, $CLIENT_TABLE_HEADER_TEXT;
+
+$search = $_POST['search'];
+$control = $APPLICATION->FUNCTIONS->CLIENT_CONTROL;
+$RECORDS = $control->searchRecords($search,false);
+$ID = "client_id";
+$BUTTON = false;
+
+
+echo CreateTable($CLIENT_TABLE_HEADER_TEXT, $CLIENT_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON) ?>

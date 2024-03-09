@@ -1,0 +1,216 @@
+<?php
+global $SESSION;
+
+$NAVLINKS = array(
+    [
+        "text" => "Dashboard",
+        "path" => '/',
+        "icon" => UseIcon("chart-bar-thin")
+    ],
+    [
+        "text" => "Attendance",
+        "path" => '/attendance',
+        "icon" => UseIcon("clipboard-thin")
+    ],
+    [
+        "text" => "Personnel",
+        "path" => '/personnel',
+        "icon" => UseIcon("fingerprint-thin"),
+        "sub-content" => [
+            [
+                "text" => "Adjustments",
+                "path" => '/personnel/adjustments',
+                "icon" => UseIcon("faders-horizontal-thin")
+            ],
+            [
+                "text" => "Employee Account",
+                "path" => '/personnel/employee_account',
+                "icon" => UseIcon("person-thin")
+            ],
+            [
+                "text" => "Employees",
+                "path" => '/personnel/employees',
+                "icon" => UseIcon("polygon-thin")
+            ],
+            [
+                "text" => "Employment",
+                "path" => '/personnel/employment',
+                "icon" => UseIcon("person-thin")
+            ],
+            [
+                "text" => "Mortuary",
+                "path" => '/personnel/mortuary',
+                "icon" => UseIcon("puzzle-piece-thin")
+            ],
+        ]
+    ],
+    [
+        "text" => "Client Manager",
+        "path" => '/client_manager',
+        "icon" => UseIcon("chart-bar-thin"),
+        "sub-content" => [
+            [
+                "text" => "Assign Employee",
+                "path" => '/client_manager/assign',
+                "icon" => UseIcon("person-simple-run-thin")
+            ],
+            [
+                "text" => "Clients",
+                "path" => '/client_manager/clients',
+                "icon" => UseIcon("person-simple-thin")
+            ],
+            [
+                "text" => "Billing",
+                "path" => '/client_manager/billing',
+                "icon" => UseIcon("coin-thin")
+            ],
+            [
+                "text" => "Holidays",
+                "path" => '/client_manager/holidays',
+                "icon" => UseIcon("calendar-thin")
+            ],
+        ]
+    ],
+    [
+        "text" => "Financial",
+        "path" => '/financial',
+        "icon" => UseIcon("money-thin"),
+        "sub-content" => [
+            [
+                "text" => "Payroll",
+                "path" => '/financial/payroll',
+                "icon" => UseIcon("money-thin")
+            ],
+            [
+                "text" => "Requisition",
+                "path" => '/financial/requisition',
+                "icon" => UseIcon("chart-bar-thin")
+            ],
+            [
+                "text" => "Disbursement",
+                "path" => '/financial/disbursement',
+                "icon" => UseIcon("note-thin")
+            ],
+            [
+                "text" => "Collection",
+                "path" => '/financial/collection',
+                "icon" => UseIcon("notebook-thin")
+            ],
+            [
+                "text" => "Petty Cash",
+                "path" => '/financial/petty_cash',
+                "icon" => UseIcon("notepad-thin")
+            ],
+            [
+                "text" => "Loan Manager",
+                "path" => '/financial/loan_manager',
+                "icon" => UseIcon("money-thin")
+            ],
+            [
+                "text" => "Banks",
+                "path" => '/financial/banks',
+                "icon" => UseIcon("buildings-thin")
+            ],
+        ]
+    ],
+    [
+        "text" => "Reports",
+        "path" => '/reports',
+        "icon" => UseIcon("chart-pie-thin")
+    ],
+    [
+        "text" => "Administrator",
+        "path" => '/administrator',
+        "icon" => UseIcon("chart-bar-thin"),
+        "sub-content" => [
+            [
+                "text" => "Profile",
+                "path" => '/administrator/profile',
+                "icon" => UseIcon("chart-bar-thin")
+            ],
+            [
+                "text" => "Settings",
+                "path" => '/administrator/settings',
+                "icon" => UseIcon("chart-bar-thin")
+            ],
+            [
+                "text" => "Data Maintenance",
+                "path" => '/administrator/data_maintenance',
+                "icon" => UseIcon("chart-bar-thin")
+            ],
+            [
+                "text" => "User Security",
+                "path" => '/administrator/user_security',
+                "icon" => UseIcon("chart-bar-thin")
+            ],
+        ]
+    ],
+);
+
+?>
+<nav class="main-navbar">
+    <div class="nav-header">
+        <div class="avatar-container">
+            <div class="avatar-frame">
+            </div>
+
+        </div>
+    </div>
+    <div class="nav-body">
+        <div class="nav-link-items">
+            <?php foreach ($NAVLINKS as $link): ?>
+                <?php
+                if ($this->view_path === "/") {
+                    $match = $this->view_path === $link['path'];
+                } else {
+                    $match = '/' . $this->view_path === $link['path'];
+                }
+                ?>
+                <?php if (isset($link['sub-content'])): ?>
+                    <a>
+                <?php else: ?>
+                    <a href="<?= $link['path'] ?>">
+                <?php endif; ?>
+                    <div class="nav-link <?= $match ? 'active' : '' ?>" data-path="<?= $link['path'] ?>">
+                        <div class="main">
+                            <div class="icon">
+                                    <?= $link['icon'] ?? '' ?>
+                                </div>
+                            <div class="text">
+                                <span>
+                                    <?= $link['text'] ?>
+                                </span>
+                            </div>
+                        </div>
+                        <?php if (isset($link['sub-content'])): ?>
+                            <div class="sub-content" data-path="<?= $link['path'] ?>">
+                                <?php foreach ($link['sub-content'] as $item): ?>
+                                    <?php
+                                        if ($this->view_path === "/") {
+                                            $match = $this->view_path === $item['path'];
+                                        } else {
+                                            $match = '/' . $this->view_path === $item['path'];
+                                        }
+                                    ?>
+                                    <a href="<?= $item['path'] ?>">
+                                        <div class="sub-link <?= $match ? 'active' : '' ?>">
+                                            <div class="icon">
+                                                <?= $item['icon'] ?? '' ?>
+                                            </div>
+                                            <div class="text">
+                                            <span>
+                                                <?= $item['text'] ?>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php endforeach ?>
+                            </div>
+                        <?php endif ?>
+                    </div>
+                </a>
+            <?php
+            endforeach; ?>
+        </div>
+    </div>
+</nav>

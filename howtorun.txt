@@ -1,0 +1,49 @@
+
+// FOR USER
+
+install xampp
+
+run xampp and start Apache and MySQL Services
+
+run the Bat File HRIS RUN.bat . Make sure that Xampp is already started before you run these bat file
+
+go to browser and go to url
+
+http://localhost:4000
+
+
+go to browser and go to url
+
+localhost/phpmyadmin
+
+import the sql 
+
+and return to the hris system
+
+
+//  FOR DEVELOPERR !!
+
+
+install xampp & phpstorm
+
+phpstorm must be activated
+
+open the project in the ide phpstorm
+
+run xampp
+
+run apache and mysql
+
+create database and upload the sql file named "hris_database"
+
+open the terminal at phpstorm - (alt + f12)
+
+run command
+
+php -S localhost:4000
+
+go to browser and go to url
+
+http://localhost:4000
+
+

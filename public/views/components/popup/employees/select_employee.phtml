@@ -1,0 +1,74 @@
+<?php
+
+global $APPLICATION, $EMPLOYEES_TABLE_BODY_KEY, $EMPLOYEES_TABLE_HEADER_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->EMPLOYEE_CONTROL;
+$RECORDS = $control->getAllRecords(false);
+$ID = "employee_id";
+$BUTTON = false;
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-table">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Select Employee</h1>
+                </div>
+                <div class="paragraph">
+                    <p>only one employee can be selected</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="data-table-content ">
+                        <div class="main-table-container items-component full">
+                            <div class="main-table-header">
+                                <div class="table-header">
+                                    <div class="left">
+                                        <div class="title">
+                                            <h2>Employees</h2>
+                                        </div>
+                                    </div>
+                                    <div class="center">
+                                        <div class="search-engine-parent full-width">
+                                            <div class="search-engine">
+                                                <div class="icon">
+                                                    <?= UseIcon("magnifying-glass-thin") ?>
+                                                </div>
+                                                <input type="text" name="search-records" placeholder="Search Records...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right"></div>
+                                </div>
+                                <div class="table-buttons">
+                                    <div class="left"></div>
+                                    <div class="right">
+                                        <div class="icon-button table-button show-component" data-name="select-request">
+                                            <div class="icon">
+                                                <?= UseIcon("eye-thin") ?>
+                                            </div>
+                                            <div class="text">
+                                                <span>Select Employee</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="main-table-body main-table-requests">
+                                <?= CreateTable($EMPLOYEES_TABLE_HEADER_TEXT, $EMPLOYEES_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<?php
+
+global $APPLICATION, $ATTENDANCE_GROUP_BODY_KEY, $ATTENDANCE_GROUP_TABLE_HEADER_TEXT;
+
+$search = $_POST['search'];
+$control = $APPLICATION->FUNCTIONS->ATTENDANCE_GROUP_CONTROL;
+$RECORDS = $control->searchRecords($search, false);
+$ID = "attendance_group_id";
+$BUTTON = false;
+
+
+echo CreateTable($ATTENDANCE_GROUP_TABLE_HEADER_TEXT, $ATTENDANCE_GROUP_BODY_KEY, $RECORDS, $ID, $BUTTON);

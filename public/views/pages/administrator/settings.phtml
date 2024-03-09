@@ -1,0 +1,254 @@
+<?php
+
+global $APPLICATION, $NO_TYPE_TABLE_HEADER_TEXT, $NO_TYPE_TABLE_BODY_KEY;
+global $SERVICES_DEDUCTION_TABLE_BODY_KEY, $SERVICES_DEDUCTION_TABLE_HEADER_TEXT;
+
+$systemTypeControl = $APPLICATION->FUNCTIONS->SYSTEM_TYPES_CONTROL;
+$serviceDeductionTypeControl = $APPLICATION->FUNCTIONS->SERVICE_DEDUCTION_CONTROL;
+
+$LOANTYPES = $systemTypeControl->filterRecords(["category" => "loan_type"], false);
+$EXPENSESTYPES = $systemTypeControl->filterRecords(["category" => "expense_type"], false);
+$SSS = $serviceDeductionTypeControl->filterRecords(["category" => "sss"], false);
+$PHIL = $serviceDeductionTypeControl->filterRecords(["category" => "phil"], false);
+$PAGIBIG = $serviceDeductionTypeControl->filterRecords(["category" => "pagibig"], false);
+
+$ID = "employment_id";
+$BUTTON = false;
+?>
+
+<?php include "public/views/pages/structures/html_headings.phtml" ?>
+
+<title>Settings</title>
+
+<?php include "public/views/pages/structures/html_heading_closing.phtml" ?>
+
+<?php include "public/views/pages/structures/html_body_open.phtml" ?>
+
+<?php include "public/views/pages/structures/html_opening_parent.phtml" ?>
+
+<div class="left-content">
+
+    <?php include "public/views/pages/structures/html_navbar.phtml" ?>
+
+</div>
+
+<div class="right-content">
+
+    <?php include "public/views/pages/structures/html_right_heading.phtml" ?>
+
+    <div class="right-body">
+        <div class="main-body-content-parent">
+            <div class="main-body-header">
+                <div class="header-nav">
+                    <div class="left">
+                        <div class="title">
+                            <h2>Manage Settings</h2>
+                        </div>
+                    </div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            <div class="main-body-body">
+
+                <div class="menu-tab-control-parent menu-bar-settings">
+                    <?= CreateMenuBarHeader("settings-table",["Loan Type", "Expense Type", "SSS", "PH", "Pag-ibig", "Y & P & M"]) ?>
+
+                    <div class="menu-content-not-official">
+                        <div class="menu-body-item system_type_table" data-category="loan_type">
+                            <div class="data-table-content">
+                                <div class="main-table-container table-component full">
+                                    <div class="main-table-header">
+                                        <div class="table-header">
+                                            <div class="left">
+                                                <div class="title">
+                                                    <h2>List of Loans</h2>
+                                                </div>
+                                            </div>
+                                            <div class="center">
+
+                                            </div>
+                                            <div class="right">
+                                                <div class="icon-button table-button show-component" data-name="delete-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("trash-thin") ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="icon-button table-button show-component" data-name="add-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("plus-thin") ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="main-table-body main-table-requests">
+                                        <?= CreateTable($NO_TYPE_TABLE_HEADER_TEXT, $NO_TYPE_TABLE_BODY_KEY, $LOANTYPES, "type_id", $BUTTON) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-body-item system_type_table" data-category="expense_type">
+                            <div class="data-table-content">
+                                <div class="main-table-container table-component full">
+                                    <div class="main-table-header">
+                                        <div class="table-header">
+                                            <div class="left">
+                                                <div class="title">
+                                                    <h2>Expense Type</h2>
+                                                </div>
+                                            </div>
+                                            <div class="center">
+
+                                            </div>
+                                            <div class="right">
+                                                <div class="icon-button table-button show-component" data-name="delete-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("trash-thin") ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="icon-button table-button show-component" data-name="add-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("plus-thin") ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="main-table-body main-table-requests">
+                                        <?= CreateTable($NO_TYPE_TABLE_HEADER_TEXT, $NO_TYPE_TABLE_BODY_KEY, $EXPENSESTYPES, "type_id", $BUTTON) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-body-item service_deduction_table" data-category="sss">
+                            <div class="data-table-content">
+                                <div class="main-table-container table-component full">
+                                    <div class="main-table-header">
+                                        <div class="table-header">
+                                            <div class="left">
+                                                <div class="title">
+                                                    <h2>SSS</h2>
+                                                </div>
+                                            </div>
+                                            <div class="center">
+
+                                            </div>
+                                            <div class="right">
+                                                <div class="icon-button table-button show-component" data-name="delete-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("trash-thin") ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="icon-button table-button show-component" data-name="add-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("plus-thin") ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="main-table-body main-table-requests">
+                                        <?= CreateTable($SERVICES_DEDUCTION_TABLE_HEADER_TEXT, $SERVICES_DEDUCTION_TABLE_BODY_KEY, $SSS, "service_deduction_id", $BUTTON) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-body-item service_deduction_table" data-category="phil">
+                            <div class="data-table-content">
+                                <div class="main-table-container table-component full">
+                                    <div class="main-table-header">
+                                        <div class="table-header">
+                                            <div class="left">
+                                                <div class="title">
+                                                    <h2>Phil-health</h2>
+                                                </div>
+                                            </div>
+                                            <div class="center">
+
+                                            </div>
+                                            <div class="right">
+                                                <div class="icon-button table-button show-component" data-name="delete-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("trash-thin") ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="icon-button table-button show-component" data-name="add-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("plus-thin") ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="main-table-body main-table-requests">
+                                        <?= CreateTable($SERVICES_DEDUCTION_TABLE_HEADER_TEXT, $SERVICES_DEDUCTION_TABLE_BODY_KEY, $PHIL, "service_deduction_id", $BUTTON) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-body-item service_deduction_table" data-category="pagibig">
+                            <div class="data-table-content">
+                                <div class="main-table-container table-component full">
+                                    <div class="main-table-header">
+                                        <div class="table-header">
+                                            <div class="left">
+                                                <div class="title">
+                                                    <h2>Pag-ibig</h2>
+                                                </div>
+                                            </div>
+                                            <div class="center">
+
+                                            </div>
+                                            <div class="right">
+                                                <div class="icon-button table-button show-component" data-name="delete-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("trash-thin") ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="icon-button table-button show-component" data-name="add-request">
+                                                    <div class="icon">
+                                                        <?= UseIcon("plus-thin") ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="main-table-body main-table-requests">
+                                        <?= CreateTable($SERVICES_DEDUCTION_TABLE_HEADER_TEXT, $SERVICES_DEDUCTION_TABLE_BODY_KEY, $PAGIBIG, "service_deduction_id", $BUTTON) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-body-item">
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <?php include "public/views/pages/structures/html_pipes.phtml" ?>
+
+    <script type="module" src="/public/assets/scripts/pages/main/administrator/settings.js"></script>
+
+    <?php include "public/views/pages/structures/html_closing_parent.phtml" ?>
+
+    <?php include "public/views/pages/structures/html_body_closing.phtml" ?>

@@ -1,0 +1,11 @@
+<?php
+
+global $APPLICATION, $BANKS_TABLE_BODY_KEY, $BANKS_TABLE_HEADER_TEXT;
+
+$search = $_POST['search'];
+$control = $APPLICATION->FUNCTIONS->BANK_CONTROL;
+$RECORDS = $control->searchRecords($search, false);
+$ID = "bank_id";
+$BUTTON = false;
+
+echo CreateTable($BANKS_TABLE_HEADER_TEXT, $BANKS_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON);

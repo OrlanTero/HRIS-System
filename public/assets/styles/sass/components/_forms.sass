@@ -1,0 +1,331 @@
+.form-control
+  .form-group-container
+    display: block
+
+    &.flex
+      display: flex !important
+      justify-content: space-between
+
+      .form-group
+        width: 100% !important
+        &.half
+          width: 50% !important
+    &.submit-group
+      display: flex
+      justify-content: center
+      margin-top: 10px
+
+      &.right-side
+        justify-content: flex-end !important
+      &.left-side
+        justify-content: left !important
+      .filled-button
+        width: 180px
+        cursor: pointer
+        padding: 12px 14px !important
+        border-radius: 8px
+        &.button-fill
+          background: $color8
+          color: $active
+
+      .form-group
+        margin: 5px 20px
+        input[type=submit]
+          background: $darkred
+          font-size: 18px
+          color: #F0F2F5
+          width: 180px
+          cursor: pointer
+          padding: 12px 14px
+          &.button-disabled
+            background: #ebeeee !important
+
+
+  .form-group
+    padding: 5px 5px
+
+    &.submit-input
+      width: 100%
+      display: flex
+      justify-content: center
+
+      input[type=submit]
+        width: 90%
+        background: $darkred
+        font-size: 18px
+        color: #F0F2F5
+        cursor: pointer
+        padding: 12px 14px
+
+    &.filled-green:not(&.button-disabled)
+      input
+        background: $green !important
+
+    .error-container.input-error
+      input, textarea
+        border: 1px solid $darkred !important
+
+    label
+      margin: 10px 0
+      position: relative
+      top: -5px
+
+      span
+        font-weight: 600
+        font-size: 14px
+
+    textarea
+      height: 125px
+      min-height: 125px
+      max-height: 200px
+      min-width: 100%
+      max-width: 100%
+      resize: none
+      &.small
+        height: 100px !important
+        min-height: 100px !important
+
+    input, textarea
+      width: 100%
+      font-size: 16px
+      border: none
+      outline: none
+      padding: 14px 16px
+      border-radius: 5px
+      border: 1px solid lightgray
+      background: #F5F6F7
+
+    .link
+      display: flex
+      justify-content: center
+      align-items: center
+      height: 100%
+      width: 100%
+      cursor: pointer
+      font-weight: 600
+      user-select: none
+
+      a
+        text-decoration: none
+        color: $textgray
+
+    .preview-image
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      padding: 10px
+      background: #ffffff
+      box-shadow: $component_boxshadow
+      margin: 5px 0
+
+      img, svg
+        width: 200px
+        height: auto
+
+
+.custom-checkbox-parent
+  width: 40px
+  height: 40px
+  padding: 10px
+  border-radius: 50%
+  cursor: pointer
+  display: flex
+  justify-content: center
+
+  &:hover
+    .circle
+      background: #cccccc98
+
+  .circle
+    width: 40px
+    height: 40px
+    padding: 10px
+    border-radius: 50%
+    cursor: pointer
+    position: absolute
+    top: 10%
+    margin-left: -10px
+    z-index: -1
+
+  .checkbox-content
+    width: 100%
+
+.custom-checkbox
+  position: relative
+  cursor: pointer
+  font-size: 20px
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  box-shadow: $global_boxshadow
+
+  input
+    position: absolute
+    opacity: 0
+    cursor: pointer
+    height: 0
+    width: 0
+
+    &:checked
+      & ~ .checkmark
+        background-color: $color8
+
+        &:after
+          display: block
+
+  .checkmark
+    &:after
+      left: 6px
+      top: 2px
+      width: 5px
+      height: 10px
+      border: solid white
+      border-width: 0 3px 3px 0
+      -webkit-transform: rotate(45deg)
+      -ms-transform: rotate(45deg)
+      transform: rotate(45deg)
+
+.checkmark
+  position: absolute
+  top: 0
+  left: 0
+  height: 20px
+  width: 20px
+  background-color: #eee
+
+  &:after
+    content: ""
+    position: absolute
+    display: none
+
+.custom-select-box
+  position: relative
+  cursor: pointer
+  display: flex
+  align-items: center
+  border-radius: 5px
+  border: 1px solid lightgray
+  background: #F5F6F7
+
+  .main-content
+    display: flex
+    align-items: center
+    align-content: center
+    justify-content: space-between
+    width: 100%
+
+    input
+      padding: 14px 16px
+      width: 100%
+      height: 100%
+      font-size: 16px
+      outline: none
+      cursor: pointer
+      color: #000
+      background: none
+      border: none
+
+
+    .icon
+      width: 39px
+      height: 30px
+      min-width: 30px
+      min-height: 30px
+      max-width: 30px
+      display: flex
+      justify-content: center
+      align-items: center
+
+      svg, path
+        width: 24px
+        height: auto
+.custom-combo-box
+  position: relative
+  cursor: pointer
+  display: flex
+  align-items: center
+  border-radius: 5px
+  border: 1px solid lightgray
+  background: #F5F6F7
+
+  &.show
+    .floating-container
+      display: block
+
+  .main-content
+    display: flex
+    align-items: center
+    align-content: center
+    justify-content: space-between
+    width: 100%
+
+    input
+      padding: 14px 16px
+      width: 100%
+      height: 100%
+      font-size: 16px
+      outline: none
+      cursor: pointer
+      color: #000
+      background: none
+      border: none
+
+
+    .icon
+      width: 39px
+      height: 30px
+      min-width: 30px
+      min-height: 30px
+      max-width: 30px
+      display: flex
+      justify-content: center
+      align-items: center
+
+      svg, path
+        width: 24px
+        height: auto
+
+  .floating-container
+    position: absolute
+    top: 101%
+    background: #fff
+    box-shadow: $global_boxshadow
+    width: 100%
+    display: none
+    min-height: 50px
+    max-height: 250px
+    overflow: auto
+    z-index: 8
+
+    .item
+      padding: 5px 10px
+      cursor: pointer
+      user-select: none
+
+      &:hover, &.select
+        background: #ebeeee
+
+      &.hide
+        display: none !important
+
+.circular-item-list
+  display: flex
+  flex-wrap: wrap
+
+  .items
+    display: flex
+    flex-wrap: wrap
+
+  .circle-item
+    padding: 10px 14px
+    border-radius: 25px
+    cursor: pointer
+    margin: 10px 5px
+    user-select: none
+
+    &[role=item]
+      border: 1px solid lightgray
+      background: #F5F6F7

@@ -1,0 +1,106 @@
+<?php
+global $APPLICATION;
+
+use Application\models\AttendanceGroup;
+
+$control = $APPLICATION->FUNCTIONS->ATTENDANCE_GROUP_CONTROL;
+$data = json_decode($_POST['data'], true);
+$id = $data['id'];
+/**
+ * @type AttendanceGroup
+ */
+$attendance_group = $control->get($id, true);
+
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-table">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Manage Attendance</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Client: <?= $attendance_group->client->name ?></p>
+                    <p>Branch: <?= $attendance_group->client->branch ?></p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="client-control">
+                        <div class="form-group-container flex">
+                            <div class="form-group tooltip">
+                                <div class="tooltiptext">
+                                    <span>Client</span>
+                                </div>
+                                <div class="error-container">
+                                    <div class="custom-select-box select-client" >
+                                        <div class="main-content">
+                                            <input type="text" name="client_id" placeholder="Client" readonly value="<?= $attendance_group->client->name ?> ">
+
+                                            <div class="icon">
+                                                <svg width="256px" height="256px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M138.82861,130.82861l-80,80a4.00026,4.00026,0,0,1-5.65722-5.65722L130.34326,128,53.17139,50.82861a4.00026,4.00026,0,0,1,5.65722-5.65722l80,80A4.0006,4.0006,0,0,1,138.82861,130.82861Zm80-5.65722-80-80a4.00026,4.00026,0,0,0-5.65722,5.65722L210.34326,128l-77.17187,77.17139a4.00026,4.00026,0,0,0,5.65722,5.65722l80-80A4.0006,4.0006,0,0,0,218.82861,125.17139Z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group tooltip">
+                                <div class="tooltiptext">
+                                    <span>Branch</span>
+                                </div>
+                                <div class="error-container">
+                                    <input type="text" name="branch" placeholder="Branch" disabled value="<?= $attendance_group->client->branch ?>">
+                                </div>
+                            </div>
+                            <div class="form-group tooltip">
+                                <div class="tooltiptext">
+                                    <span>Year</span>
+                                </div>
+                                <div class="error-container">
+                                    <?= CreateComboBox("year", "Year", GetYearsFrom(1990), false, $attendance_group->year) ?>
+                                </div>
+                            </div>
+                            <div class="form-group tooltip">
+                                <div class="tooltiptext">
+                                    <span>Period</span>
+                                </div>
+                                <div class="error-container">
+                                    <?= CreateComboBox("period", "Period", [], false, $attendance_group->period) ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="employee-control">
+                        <div class="employee-attendance-parent main-attendance-table-container">
+                            <?php foreach ($attendance_group->client->deployed_employees as $employee):  ?>
+                                <?= CreateEmployeeAttendanceTable($attendance_group, $employee->employee) ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group filled-green">
+                            <input type="submit" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

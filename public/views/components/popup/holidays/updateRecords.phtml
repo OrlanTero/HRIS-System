@@ -1,0 +1,10 @@
+<?php
+
+global $APPLICATION, $HOLIDAYS_TABLE_BODY_KEY, $HOLIDAYS_TABLE_HEADER_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->HOLIDAY_CONTROL;
+$RECORDS = $control->getAllRecords(false);
+$ID = "holiday_id";
+$BUTTON = false;
+
+echo CreateTable($HOLIDAYS_TABLE_HEADER_TEXT, $HOLIDAYS_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON);

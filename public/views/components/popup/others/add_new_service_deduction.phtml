@@ -1,0 +1,96 @@
+<?php
+global $APPLICATION;
+
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>New Item</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Enter required field</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <div class="tooltiptext">
+                                <span>Type</span>
+                            </div>
+                            <div class="error-container">
+                                <input type="text" name="type" placeholder="Type" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <div class="tooltiptext">
+                                <span>From</span>
+                            </div>
+                            <div class="error-container">
+                                <input type="number" name="price_from" placeholder="From" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <div class="tooltiptext">
+                                <span>To</span>
+                            </div>
+                            <div class="error-container">
+                                <input type="number" name="price_to" placeholder="To" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <div class="tooltiptext">
+                                <span>ER</span>
+                            </div>
+                            <div class="error-container">
+                                <input type="number" name="er" placeholder="ER" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <div class="tooltiptext">
+                                <span>EE</span>
+                            </div>
+                            <div class="error-container">
+                                <input type="number" name="ee" placeholder="EE" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group filled-green">
+                            <input type="submit" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

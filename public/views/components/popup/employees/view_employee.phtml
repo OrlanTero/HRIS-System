@@ -1,0 +1,239 @@
+<?php
+global $APPLICATION, $GENDERS, $CIVIL_STATUS;
+
+use Application\models\Employee;
+
+$control = $APPLICATION->FUNCTIONS->EMPLOYEE_CONTROL;
+$data = json_decode($_POST['data'], true);
+$id = $data['id'];
+
+/**
+ * @type Employee
+ */
+$employee = $control->get($id, true);
+
+$banks = $employee->getBanks();
+
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-table">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>View Employee</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Employee #<?= $employee->employee_no ?></p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="add-content-flex-parent">
+                        <div class="add-content-left">
+                            <div class="title">
+                                <h3>Basic Information</h3>
+                            </div>
+                            <div class="form-group-container">
+                                <div class="form-group">
+                                    <div class="error-container">
+                                        <input type="number" name="employee_no" value="<?= $employee->employee_no ?>" placeholder="Employee Number" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-container flex">
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Firstname</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="firstname" placeholder="Firstname" value="<?= $employee->firstname ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Lastname</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="lastname" placeholder="Lastname" value="<?= $employee->lastname ?>" >
+                                    </div>
+                                </div>
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Middle name</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="middlename" placeholder="Middle name"value="<?= $employee->middlename ?>" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-container flex">
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Gender</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <?= CreateComboBox("gender", "Gender", $GENDERS, false, $employee->gender) ?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Civil Status</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <?= CreateComboBox("civil_status", "Civil Status", $CIVIL_STATUS, false, $employee->civil_status) ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-container flex">
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Telephone</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="telephone" placeholder="Telephone" value="<?= $employee->telephone ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Mobile</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="mobile" placeholder="Mobile" value="<?= $employee->mobile ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-container flex">
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Email</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="email" placeholder="Email" value="<?= $employee->email ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-content-middle">
+                            <div class="title">
+                                <h3>Address & ID's</h3>
+                            </div>
+                            <div class="form-group-container flex">
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Address</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <textarea name="address" class="small"  cols="30" rows="10" placeholder="Address"><?= $employee->address ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-container flex">
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>SSS #</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="sss" placeholder="SSS #" value="<?= $employee->sss ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>TIN #</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="tin" placeholder="TIN #" value="<?= $employee->tin ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>RFID #</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="rfid" placeholder="RFID #" value="<?= $employee->rfid ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-container flex">
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Phil Health #</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="phil" placeholder="Phil Health #" value="<?= $employee->phil ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>CTC #</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="ctc" placeholder="CTC #" value="<?= $employee->ctc ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>GSIS #</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="gsis" placeholder="GSIS #" value="<?= $employee->gsis ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-container flex">
+                                <div class="form-group tooltip">
+                                    <div class="tooltiptext">
+                                        <span>Pagibig #</span>
+                                    </div>
+                                    <div class="error-container">
+                                        <input type="text" name="pagibig" placeholder="Pagibig #" value="<?= $employee->pagibig ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-content-right">
+                            <div class="title">
+                                <h3>Bank Accounts</h3>
+                            </div>
+                            <div class="most-item-lists">
+                                <div class="main">
+                                    <?php foreach ($banks as $bank): ?>
+                                        <li class="item item-button" data-id="<?= $bank->bank_account_id ?>">
+                                            <span><?= $bank->bank ?></span>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </div>
+                                <div class="footer">
+                                    <li class="item button add-new-bank-account">
+                                        <span>Add Bank Account</span>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link back-form">
+                                <span>Back</span>
+                            </div>
+                        </div>
+                        <div class="form-group filled-green">
+                            <input type="submit" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

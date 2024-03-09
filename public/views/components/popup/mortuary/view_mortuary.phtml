@@ -1,0 +1,118 @@
+<?php
+global $APPLICATION, $DEPARTMENTS, $EMPLOYMENT_STATUS, $EMPLOYMENT_TYPES, $EMPLOYMENT_POSITIONS, $RESTDAYS;
+global $BENEFICIARIES_TABLE_BODY_KEY, $BENEFICIARIES_TABLE_HEADER_TEXT;
+
+use Application\models\Mortuary;
+
+
+$data = json_decode($_POST['data'], true);
+$id = $data['id'];
+$control = $APPLICATION->FUNCTIONS->MORTUARY_CONTROL;
+$beneficiariesControl= $APPLICATION->FUNCTIONS->BENEFICIARY_CONTROL;
+
+/**
+ * @type Mortuary
+ */
+$mortuary = $control->get($id, true);
+
+$RECORDS = $beneficiariesControl->filterRecords(['mortuary_id' => $mortuary->mortuary_id], false);
+$ID = "beneficiary_id";
+$BUTTON = -1;
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-table">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>View Mortuary</h1>
+                </div>
+                <div class="paragraph">
+                    <p>List of Beneficiaries</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <div class="tooltiptext">
+                                <span>Year</span>
+                            </div>
+                            <div class="error-container">
+                                <?= CreateComboBox("year", "Year", GetYearsFrom(1990), false, $mortuary->year) ?>
+                            </div>
+                        </div>
+                        <div class="form-group tooltip">
+                            <div class="tooltiptext">
+                                <span>Period</span>
+                            </div>
+                            <div class="error-container">
+                                <?= CreateComboBox("period", "Period", [], false, $mortuary->period) ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-table-content">
+                        <div class="main-table-container table-component full">
+                            <div class="main-table-header">
+                                <div class="table-header">
+                                    <div class="left">
+                                        <div class="title">
+                                            <h2>Beneficiaries</h2>
+                                        </div>
+                                    </div>
+                                    <div class="center"></div>
+                                    <div class="right"></div>
+                                </div>
+                                <div class="table-buttons">
+                                    <div class="left"></div>
+                                    <div class="right">
+                                        <div class="icon-button table-button show-component" data-name="delete-request">
+                                            <div class="icon">
+                                                <?= UseIcon("trash-thin") ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-button table-button show-component" data-name="edit-request">
+                                            <div class="icon">
+                                                <?= UseIcon("pencil-thin") ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-button table-button show-component" data-name="add-request">
+                                            <div class="icon">
+                                                <?= UseIcon("plus-thin") ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="main-table-body main-table-requests">
+                                <?= CreateTable($BENEFICIARIES_TABLE_HEADER_TEXT, $BENEFICIARIES_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group filled-green">
+                            <input type="submit" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

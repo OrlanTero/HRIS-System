@@ -1,0 +1,10 @@
+<?php
+
+global $APPLICATION, $CLIENT_TABLE_BODY_KEY, $CLIENT_TABLE_HEADER_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->CLIENT_CONTROL;
+$RECORDS = $control->getAllRecords(false);
+$ID = "client_id";
+$BUTTON = false;
+
+echo CreateTable($CLIENT_TABLE_HEADER_TEXT, $CLIENT_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON) ?>

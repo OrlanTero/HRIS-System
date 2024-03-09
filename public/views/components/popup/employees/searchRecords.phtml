@@ -1,0 +1,11 @@
+<?php
+
+global $APPLICATION, $EMPLOYEES_TABLE_BODY_KEY, $EMPLOYEES_TABLE_HEADER_TEXT;
+
+$search = $_POST['search'];
+$control = $APPLICATION->FUNCTIONS->EMPLOYEE_CONTROL;
+$RECORDS = $control->searchRecords($search, false);
+$ID = "employee_id";
+$BUTTON = false;
+
+echo CreateTable($EMPLOYEES_TABLE_HEADER_TEXT, $EMPLOYEES_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON);

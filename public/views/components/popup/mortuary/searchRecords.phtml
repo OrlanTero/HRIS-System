@@ -1,0 +1,11 @@
+<?php
+
+global $APPLICATION, $MORTUARY_TABLE_BODY_KEY, $MORTUARY_TABLE_HEADER_TEXT;
+
+$search = $_POST['search'];
+$control = $APPLICATION->FUNCTIONS->MORTUARY_CONTROL;
+$RECORDS = $control->searchRecords($search,false);
+$ID = "mortuary_id";
+$BUTTON = false;
+
+echo CreateTable($MORTUARY_TABLE_HEADER_TEXT, $MORTUARY_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON) ?>

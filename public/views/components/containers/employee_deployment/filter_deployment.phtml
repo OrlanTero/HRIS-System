@@ -1,0 +1,16 @@
+<?php
+
+global $APPLICATION, $DEPLOYMENT_TABLE_BODY_KEY, $DEPLOYMENT_TABLE_HEADER_TEXT;
+
+$id = $_POST['client_id'];
+
+$employeeControl = $APPLICATION->FUNCTIONS->EMPLOYEE_CONTROL;
+$clientControl = $APPLICATION->FUNCTIONS->CLIENT_CONTROL;
+$control = $APPLICATION->FUNCTIONS->DEPLOYED_EMPLOYEE_CONTROL;
+$RECORDS = $control->getAllRecords(true);
+$RECORDS = empty($RECORDS) ? [] : $control->filterRecords(["client_id" => $id], false);
+
+$ID = "deployed_employee_id";
+$BUTTON = false;
+
+echo CreateTable($DEPLOYMENT_TABLE_HEADER_TEXT, $DEPLOYMENT_TABLE_BODY_KEY, $RECORDS, $ID, $BUTTON);
